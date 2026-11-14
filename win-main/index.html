@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hướng Dẫn Cài Đặt Locket Gold</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locket Gold - Nâng Cấp Tự Động 24/7</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,182 +13,221 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-          colors: {
-            gold: {
-              300: '#fcd34d',
-              400: '#fbbf24',
-              500: '#f59e0b',
-              600: '#d97706'
-            }
-          }
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
         }
       }
-    };
+    }
   </script>
   <style>
-    body {
-      background:
-        radial-gradient(circle at top left, rgba(245, 158, 11, 0.22), transparent 32%),
-        radial-gradient(circle at bottom right, rgba(251, 191, 36, 0.18), transparent 28%),
-        #0b0a09;
-      background-size: 200% 200%, 200% 200%, auto;
-      animation: ambient-gradient 18s ease-in-out infinite alternate;
-    }
-    @keyframes ambient-gradient {
-      from { background-position: 0% 0%, 100% 100%, 0 0; }
-      to { background-position: 100% 50%, 0% 50%, 0 0; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      body { animation: none; }
-    }
-    .glass {
-      background: rgba(24, 24, 27, 0.8);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
+    body.modal-open { overflow: hidden; }
   </style>
 </head>
-<body class="min-h-screen text-white font-sans antialiased">
-  <div class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-    <header class="mb-8 flex items-center justify-between gap-4">
+<body class="isolate bg-[#0b0a09] text-slate-100 min-h-screen font-sans antialiased flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="border-b border-amber-500/10 bg-[#0b0a09]/80 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center shadow-lg shadow-amber-500/30">
-          <i class="fa-solid fa-crown text-zinc-950 text-lg"></i>
-        </div>
-        <div>
-          <p class="text-xs uppercase tracking-[0.2em] text-amber-300/80">Locket Gold</p>
-          <h1 class="text-xl font-extrabold">Hướng Dẫn Cài Đặt</h1>
-        </div>
+        <img src="./locket.webp" alt="Logo Locket Gold" class="w-10 h-10 rounded-xl object-cover border border-amber-500/20" />
+        <span class="font-extrabold text-xl text-white">Locket <span class="text-amber-400">Gold</span></span>
       </div>
-      <a href="./index.html" class="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm font-medium text-amber-200 hover:bg-amber-500/20 transition">
-        <i class="fa-solid fa-arrow-left"></i>
-        Về trang mua
-      </a>
-    </header>
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Hệ thống tự động 24/7
+      </span>
+    </div>
+  </header>
 
-    <main class="space-y-6">
-      <section class="glass border border-amber-500/20 rounded-3xl p-5 sm:p-7 shadow-2xl shadow-amber-500/10">
-        <div class="flex flex-wrap items-center gap-3 mb-4">
-          <span class="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/20 px-3 py-1 text-xs font-semibold text-amber-300">
-            <i class="fa-solid fa-mobile-screen-button"></i>
-            Hướng dẫn iPhone (Safari)
-          </span>
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight mb-3">
-          Cài đặt Locket Gold
-        </h2>
-        <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
-          Mở trang này bằng trình duyệt <strong>Safari</strong> trên iPhone. Xem ảnh minh họa đầu tiên rồi nhấn <strong>Tải cấu hình</strong> ngay bên dưới để bắt đầu.
-        </p>
-      </section>
-
-      <section class="glass border border-amber-500/20 rounded-3xl p-5 sm:p-6">
-        <div class="mb-6 text-center sm:text-left">
-          <p class="text-xs uppercase tracking-[0.18em] text-amber-300/80 mb-2">Trình tự cài đặt</p>
-          <h3 class="text-xl font-bold">8 bước kích hoạt trên iPhone</h3>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-          <!-- Bước 1 -->
-          <div class="mx-auto w-full max-w-[360px] rounded-2xl border border-zinc-700 bg-zinc-950/70 p-4">
-            <div class="mb-3 flex items-center gap-3">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-sm font-extrabold text-amber-300">1</span>
-              <h4 class="text-base font-bold text-white">Tải &amp; Cho phép hồ sơ</h4>
-            </div>
-            <p class="mb-3 text-xs sm:text-sm leading-relaxed text-zinc-300">Nhấn nút tải bên dưới, khi Safari hỏi xác nhận, chọn <strong>Cho phép</strong>.</p>
-            <img src="./01-cho-phep-tai-ho-so.jpg" alt="Cho phép tải hồ sơ" class="mx-auto max-h-[420px] max-w-[320px] w-full rounded-xl border border-zinc-700 bg-black/20 object-contain" />
-            <a href="./locket.mobileconfig" download class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-yellow-400 via-amber-400 to-amber-500 px-5 py-3 text-sm font-extrabold text-zinc-950 shadow-lg shadow-amber-500/20 hover:brightness-110 transition">
-              <i class="fa-solid fa-download"></i>
-              Tải cấu hình Locket Gold
-            </a>
-          </div>
-
-          <!-- Bước 2 -->
-          <div class="mx-auto w-full max-w-[360px] rounded-2xl border border-zinc-700 bg-zinc-950/70 p-4">
-            <div class="mb-3 flex items-center gap-3">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-sm font-extrabold text-amber-300">2</span>
-              <h4 class="text-base font-bold text-white">Mở Cài đặt chung</h4>
-            </div>
-            <p class="mb-3 text-xs sm:text-sm leading-relaxed text-zinc-300">Vào ứng dụng <strong>Cài đặt</strong> trên máy rồi chọn <strong>Cài đặt chung</strong>.</p>
-            <img src="./02-cai-dat-chung.jpg" alt="Mở Cài đặt chung" loading="lazy" class="mx-auto max-h-[420px] max-w-[320px] w-full rounded-xl border border-zinc-700 bg-black/20 object-contain" />
-          </div>
-
-          <!-- Bước 3 -->
-          <div class="mx-auto w-full max-w-[360px] rounded-2xl border border-zinc-700 bg-zinc-950/70 p-4">
-            <div class="mb-3 flex items-center gap-3">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-sm font-extrabold text-amber-300">3</span>
-              <h4 class="text-base font-bold text-white">Quản lý VPN &amp; thiết bị</h4>
-            </div>
-            <p class="mb-3 text-xs sm:text-sm leading-relaxed text-zinc-300">Trong Cài đặt chung, cuộn xuống và mở <strong>Quản lý VPN &amp; thiết bị</strong>.</p>
-            <img src="./03-quan-ly-vpn-thiet-bi.jpg" alt="Mở Quản lý VPN và thiết bị" loading="lazy" class="mx-auto max-h-[420px] max-w-[320px] w-full rounded-xl border border-zinc-700 bg-black/20 object-contain" />
-          </div>
-
-          <!-- Bước 4 -->
-          <div class="mx-auto w-full max-w-[360px] rounded-2xl border border-zinc-700 bg-zinc-950/70 p-4">
-            <div class="mb-3 flex items-center gap-3">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-sm font-extrabold text-amber-300">4</span>
-              <h4 class="text-base font-bold text-white">Chọn hồ sơ locket.com</h4>
-            </div>
-            <p class="mb-3 text-xs sm:text-sm leading-relaxed text-zinc-300">Trong mục <strong>Hồ sơ đã tải về</strong>, nhấn vào <strong>locket.com</strong>.</p>
-            <img src="./04-locket-com.jpg" alt="Chọn hồ sơ locket.com" loading="lazy" class="mx-auto max-h-[420px] max-w-[320px] w-full rounded-xl border border-zinc-700 bg-black/20 object-contain" />
-          </div>
-
-          <!-- Bước 5 -->
-          <div class="mx-auto w-full max-w-[360px] rounded-2xl border border-zinc-700 bg-zinc-950/70 p-4">
-            <div class="mb-3 flex items-center gap-3">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-sm font-extrabold text-amber-300">5</span>
-              <h4 class="text-base font-bold text-white">Nhấn Cài đặt hồ sơ</h4>
-            </div>
-            <p class="mb-3 text-xs sm:text-sm leading-relaxed text-zinc-300">Nhấn <strong>Cài đặt</strong> ở góc trên bên phải, nhập mật khẩu màn hình (nếu có) để xác nhận.</p>
-            <img src="./05-cai-dat-ho-so.jpg" alt="Nhấn Cài đặt hồ sơ locket.com" loading="lazy" class="mx-auto max-h-[420px] max-w-[320px] w-full rounded-xl border border-zinc-700 bg-black/20 object-contain" />
-          </div>
-
-          <!-- Bước 6 -->
-          <div class="mx-auto w-full max-w-[360px] rounded-2xl border border-zinc-700 bg-zinc-950/70 p-4">
-            <div class="mb-3 flex items-center gap-3">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-sm font-extrabold text-amber-300">6</span>
-              <h4 class="text-base font-bold text-white">Mở Cài đặt chung &gt; Giới thiệu</h4>
-            </div>
-            <p class="mb-3 text-xs sm:text-sm leading-relaxed text-zinc-300">Quay lại <strong>Cài đặt chung</strong> rồi chọn mục <strong>Giới thiệu</strong> ở trên cùng.</p>
-            <img src="./06-gioi-thieu.jpg" alt="Mở mục Giới thiệu trong Cài đặt chung" loading="lazy" class="mx-auto max-h-[420px] max-w-[320px] w-full rounded-xl border border-zinc-700 bg-black/20 object-contain" />
-          </div>
-
-          <!-- Bước 7 -->
-          <div class="mx-auto w-full max-w-[360px] rounded-2xl border border-zinc-700 bg-zinc-950/70 p-4">
-            <div class="mb-3 flex items-center gap-3">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-sm font-extrabold text-amber-300">7</span>
-              <h4 class="text-base font-bold text-white">Cài đặt tin cậy chứng nhận</h4>
-            </div>
-            <p class="mb-3 text-xs sm:text-sm leading-relaxed text-zinc-300">Cuộn xuống dưới cùng trang <strong>Giới thiệu</strong>, chọn <strong>Cài đặt tin cậy chứng nhận</strong>.</p>
-            <img src="./07-cai-dat-tin-cay-chung-nhan.jpg" alt="Mở Cài đặt tin cậy chứng nhận" loading="lazy" class="mx-auto max-h-[420px] max-w-[320px] w-full rounded-xl border border-zinc-700 bg-black/20 object-contain" />
-          </div>
-
-          <!-- Bước 8 -->
-          <div class="mx-auto w-full max-w-[360px] rounded-2xl border border-zinc-700 bg-zinc-950/70 p-4">
-            <div class="mb-3 flex items-center gap-3">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-sm font-extrabold text-amber-300">8</span>
-              <h4 class="text-base font-bold text-white">Bật tin cậy Locket DNS</h4>
-            </div>
-            <p class="mb-3 text-xs sm:text-sm leading-relaxed text-zinc-300">Bật công tắc <strong>Locket DNS</strong> sang màu xanh và chọn <strong>Tiếp tục</strong> để hoàn tất.</p>
-            <img src="./08-bat-tin-cay-locket-dns.jpg" alt="Bật tin cậy cho chứng chỉ Locket DNS" loading="lazy" class="mx-auto max-h-[420px] max-w-[320px] w-full rounded-xl border border-zinc-700 bg-black/20 object-contain" />
-          </div>
-        </div>
-      </section>
-
-      <div class="flex flex-col sm:flex-row justify-center gap-3 pt-2">
-        <a href="./index.html" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-yellow-400 via-amber-400 to-amber-500 px-6 py-3 text-sm font-extrabold text-zinc-950 shadow-lg shadow-amber-500/20 hover:brightness-110 transition">
-          <i class="fa-solid fa-arrow-left"></i>
-          Quay lại trang chủ
-        </a>
-        <a href="./index.html#btnOpenPayment" class="inline-flex items-center justify-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-6 py-3 text-sm font-semibold text-amber-200 hover:bg-amber-500/20 transition">
-          <i class="fa-solid fa-bolt"></i>
-          Mua cho tài khoản khác
-        </a>
+  <!-- Main Content -->
+  <main class="w-full max-w-4xl mx-auto px-4 py-8 flex-1 flex flex-col justify-center">
+    
+    <!-- Tiêu đề -->
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-4 shadow-sm">
+        <i class="fa-solid fa-bolt"></i> KÍCH HOẠT LOCKET GOLD
       </div>
-    </main>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
+        Mở Khóa <span class="text-amber-400">Locket Gold</span> Đủ Tính Năng
+      </h1>
+    </div>
+
+    <!-- Khung chính -->
+    <div class="bg-zinc-900/70 border border-amber-500/20 rounded-3xl p-6 md:p-8 backdrop-blur-xl shadow-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        <!-- Cột trái: Nhập thông tin & Danh sách tính năng -->
+        <div class="md:col-span-7 space-y-5">
+          <div>
+            <h2 class="text-xl font-bold text-white mb-1">Thông tin tài khoản nhận nâng cấp</h2>
+            <p class="text-xs text-zinc-400 mb-3">Nhập chính xác Username hoặc Link Locket để hệ thống ghi nhận:</p>
+            
+            <div class="space-y-2">
+              <label for="inputUsername" class="block text-xs font-semibold text-amber-300">Username hoặc Link Locket của bạn *</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-500">
+                  <i class="fa-solid fa-at"></i>
+                </span>
+                <input type="text" id="inputUsername" oninput="clearError()" placeholder="Ví dụ: @username_locket" class="w-full pl-10 pr-4 py-3.5 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-amber-400 transition shadow-inner" />
+              </div>
+              <p id="errorMsg" class="text-xs text-rose-400 font-medium hidden">
+                <i class="fa-solid fa-circle-exclamation mr-1"></i> Vui lòng nhập Username hoặc Link Locket trước khi kích hoạt!
+              </p>
+            </div>
+
+            <!-- Nút hướng dẫn lấy link -->
+            <div class="mt-2 text-right">
+              <button type="button" onclick="openGuideModal()" class="text-xs text-amber-400 hover:text-amber-300 font-medium inline-flex items-center gap-1 transition">
+                <i class="fa-solid fa-circle-question"></i> Không biết lấy link? Ấn vào đây
+              </button>
+            </div>
+          </div>
+
+          <!-- LƯU Ý QUAN TRỌNG -->
+          <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-start gap-2.5 leading-relaxed">
+            <i class="fa-solid fa-triangle-exclamation text-amber-400 mt-0.5 shrink-0"></i>
+            <div>
+              <span class="font-bold">Lưu ý quan trọng:</span> Bạn bắt buộc phải dùng phiên bản Locket mới nhất. Vui lòng <b class="text-white">cập nhật ứng dụng hoặc xóa đi tải lại từ App Store</b> trước khi tiến hành nâng cấp!
+            </div>
+          </div>
+
+          <!-- Các tính năng -->
+          <div class="space-y-2.5 pt-1">
+            <div class="p-3 rounded-xl bg-zinc-950/60 border border-zinc-800/80 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-video text-xs"></i>
+              </div>
+              <div class="text-xs font-bold text-white">Quay video 30s có tiếng</div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-950/60 border border-zinc-800/80 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-photo-film text-xs"></i>
+              </div>
+              <div class="text-xs font-bold text-white">Up video từ thư viện ảnh 10s có tiếng</div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-950/60 border border-zinc-800/80 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-note-sticky text-xs"></i>
+              </div>
+              <div class="text-xs font-bold text-white">Đa dạng các loại khung và ghi chú</div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-amber-500/5 border border-amber-500/20 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-shield-halved text-xs"></i>
+              </div>
+              <div class="text-xs font-bold text-amber-300">Bảo hành 1 năm (Hỗ trợ cài đặt lại miễn phí khi đổi máy/lỗi)</div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Cột phải: Giá và nút kích hoạt -->
+        <div class="md:col-span-5 bg-zinc-950/90 border border-amber-500/20 rounded-2xl p-6 text-center shadow-xl">
+          <div class="inline-block px-3 py-1 rounded-full bg-amber-400/10 text-amber-400 text-xs font-bold mb-2">
+            Gói Kích Hoạt Miễn Phí
+          </div>
+          <div class="text-xs uppercase font-semibold text-zinc-400 mb-2">Sử dụng trọn vẹn 365 ngày</div>
+          <div class="flex items-baseline justify-center gap-1 mb-6">
+            <span class="text-4xl font-extrabold text-emerald-400">0</span>
+            <span class="text-zinc-400 text-sm font-semibold">VNĐ</span>
+          </div>
+
+          <button id="btnActivate" type="button" onclick="handleActivation()" class="w-full py-4 px-6 rounded-xl font-extrabold text-zinc-950 bg-gradient-to-r from-yellow-400 via-amber-400 to-amber-500 hover:brightness-110 active:scale-[0.99] transition shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 text-sm tracking-wide">
+            <i class="fa-solid fa-bolt text-base"></i> Kích Hoạt Ngay
+          </button>
+          
+          <p id="actionStatus" class="text-[11px] text-zinc-500 mt-3">
+            <i class="fa-solid fa-bolt"></i> Phê duyệt và xử lý tự động trong giây lát
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-xs text-zinc-500 border-t border-zinc-900">
+    © Locket Gold Automated System - All rights reserved.
+  </footer>
+
+  <!-- Modal Hướng Dẫn Lấy Link -->
+  <div id="guideModal" onclick="if(event.target === this) closeGuideModal()" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+    <div class="bg-zinc-900 border border-amber-500/30 rounded-3xl w-[min(92vw,34rem)] overflow-hidden shadow-2xl relative">
+      <div class="p-5 border-b border-zinc-800 flex items-center justify-between bg-zinc-800/40">
+        <h3 class="font-bold text-white text-sm flex items-center gap-2">
+          <i class="fa-solid fa-circle-info text-amber-400"></i> Hướng dẫn cách lấy link Locket
+        </h3>
+        <button type="button" onclick="closeGuideModal()" class="text-zinc-400 hover:text-white w-8 h-8 rounded-lg flex items-center justify-center hover:bg-zinc-800 transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 text-center">
+        <div class="text-xs text-zinc-300 text-left space-y-2 bg-zinc-950/60 p-3.5 rounded-2xl border border-zinc-800">
+          <p class="font-semibold text-amber-400 mb-1">Cách lấy thông tin tài khoản:</p>
+          <p>1. Vào ứng dụng Locket → Bấm vào ảnh đại diện (Avatar) của bạn.</p>
+          <p>2. Chọn biểu tượng <b class="text-white">Sao chép liên kết</b> hoặc chạm trực tiếp vào dòng <b class="text-white">Username</b> để sao chép.</p>
+        </div>
+        
+        <div class="bg-zinc-950 p-2 rounded-2xl border border-zinc-800">
+          <img src="./link.jpg" alt="Hướng dẫn lấy link Locket" loading="lazy" class="w-full rounded-xl object-contain max-h-[45vh]">
+        </div>
+
+        <button type="button" onclick="closeGuideModal()" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs transition">
+          Đã hiểu, quay lại
+        </button>
+      </div>
+    </div>
   </div>
+
+  <script>
+    const CONFIG = {
+      guideUrl: './install-guide.html'
+    };
+
+    function clearError() {
+      document.getElementById('errorMsg').classList.add('hidden');
+      document.getElementById('inputUsername').classList.remove('border-rose-500');
+    }
+
+    function openGuideModal() {
+      document.getElementById('guideModal').classList.remove('hidden');
+      document.body.classList.add('modal-open');
+    }
+
+    function closeGuideModal() {
+      document.getElementById('guideModal').classList.add('hidden');
+      document.body.classList.remove('modal-open');
+    }
+
+    function handleActivation() {
+      const inputEl = document.getElementById('inputUsername');
+      const usernameInput = inputEl.value.trim();
+
+      if (!usernameInput) {
+        document.getElementById('errorMsg').classList.remove('hidden');
+        inputEl.classList.add('border-rose-500');
+        inputEl.focus();
+        return;
+      }
+
+      const btn = document.getElementById('btnActivate');
+      const status = document.getElementById('actionStatus');
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang kích hoạt...';
+      status.className = 'text-[11px] text-amber-400 font-medium mt-3';
+      status.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang khởi tạo gói Locket Gold 0đ...';
+
+      setTimeout(() => {
+        status.className = 'text-[11px] text-emerald-400 font-bold mt-3';
+        status.innerHTML = '<i class="fa-solid fa-circle-check"></i> Kích hoạt thành công! Đang chuyển hướng...';
+        
+        setTimeout(() => {
+          window.location.href = CONFIG.guideUrl;
+        }, 1200);
+      }, 1500);
+    }
+  </script>
 </body>
 </html>
