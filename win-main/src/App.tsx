@@ -12,7 +12,7 @@ import { DonateModal } from './components/DonateModal';
 import { ConfigModal } from './components/ConfigModal';
 import { AppConfig } from './types';
 import { CheckCircle2 } from 'lucide-react';
-import TelegramSupport from './components/TelegramSupport';
+import { TelegramSupport } from './components/TelegramSupport';
 const DEFAULT_CONFIG: AppConfig = {
   videoUrl: '/guide.mp4',
   videoTitle: 'Video Hướng Dẫn Cài Đặt Chi Tiết',
