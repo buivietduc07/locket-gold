@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-slate-400">
         <span>Hệ thống kích hoạt Locket Gold tự động</span>
         <span className="hidden sm:inline" aria-hidden="true">·</span>
-        <span>Powered by LocketGold & DNS System</span>
+        <span>Powered by buivudc07</span>
       </div>
 
       <div className="text-[10px] text-slate-600">
