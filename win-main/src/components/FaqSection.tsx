@@ -7,6 +7,11 @@ export const FaqSection: React.FC = () => {
 
   const faqs: FaqItem[] = [
     {
+  question: 'nếu chưa hiện đầy đủ photobooth thì phải làm như nào ?',
+  answer:
+    'vui lòng đăng xuất và đăng nhập lại. ',
+},
+    {
       question: 'Tải về rồi nhưng vào Cài đặt không thấy hồ sơ ở đâu?',
       answer:
         'Bạn hãy mở Cài đặt (Settings) trên iPhone ➜ chọn "Cài đặt chung" (General) ➜ kéo xuống chọn "VPN & Quản lý thiết bị" (VPN & Device Management). Bạn sẽ thấy tệp cấu hình Locket Gold nằm trong mục "Hồ sơ đã tải về". Nhấn vào đó rồi bấm Cài đặt ở góc trên bên phải.',
