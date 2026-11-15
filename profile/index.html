@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070914" />
+  <meta name="description" content="Trang profile cá nhân của Bùi Việt Đức - Developer & Creative Coder." />
+  <title>Bùi Việt Đức | Developer Profile</title>
+
+  <style>
+    :root{color-scheme:dark;--text:#f5f6ff;--muted:#a4aac2;--a:#a78bfa;--b:#42d9ff;--border:rgba(255,255,255,.16)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:#060812;color:var(--text);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}::selection{background:#926bfa88}
+    .bg-fallback{position:fixed;inset:0;z-index:-5;background:radial-gradient(ellipse at 20% 20%,#41217a 0,transparent 47%),radial-gradient(ellipse at 85% 70%,#10465d 0,transparent 45%),linear-gradient(135deg,#090912,#0b1028 55%,#0b091a);}
+
+    .video-scene{position:fixed;inset:0;z-index:-4;overflow:hidden;opacity:.8;pointer-events:none}
+    .video-scene video{display:block;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
+    .veil{position:fixed;inset:0;z-index:-3;background:linear-gradient(120deg,rgba(4,6,17,.76),rgba(9,9,22,.48),rgba(3,9,21,.78));pointer-events:none}
+    #stars{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
+    .orb{position:fixed;z-index:-1;width:320px;height:320px;border-radius:50%;filter:blur(60px);opacity:.14;pointer-events:none}.orb.one{background:#894bff;top:5%;left:-110px}.orb.two{background:#0dc5ff;right:-130px;bottom:0;}
+    .shell{width:min(100% - 28px,980px);margin:auto;padding:38px 0 44px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+    .topbar{width:min(100%,760px);display:flex;justify-content:space-between;align-items:center;gap:16px;color:#c7cbdb;font-size:12px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;padding:0 5px}.mark{display:flex;align-items:center;gap:9px}.mark i,.live i{width:8px;height:8px;border-radius:50%;background:#62f1ca;display:inline-block;box-shadow:0 0 17px #62f1ca}.live{display:flex;align-items:center;gap:8px;letter-spacing:.03em;text-transform:none;color:#bbc5d5}.live i{width:6px;height:6px}
+    .profile-wrap{position:relative;width:min(100%,760px);perspective:1300px}.glow-ring{position:absolute;inset:-1px;border-radius:31px;background:conic-gradient(from var(--angle,0deg),transparent 0 14%,#ab73ff 25%,transparent 40%,#47d9ff 60%,transparent 75%,#ab73ff 100%);filter:blur(5px);opacity:.4}@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}@keyframes spin{to{--angle:360deg}}
+    .card{position:relative;isolation:isolate;border:1px solid rgba(255,255,255,.18);border-radius:30px;padding:36px 42px 31px;background:linear-gradient(135deg,rgba(18,20,34,.83),rgba(7,9,19,.70));box-shadow:0 22px 80px #0009,inset 0 1px rgba(255,255,255,.13);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);overflow:hidden;transform-style:preserve-3d;transition:transform .18s ease-out}
+    .card:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(370px circle at var(--mx,50%) var(--my,25%),rgba(134,106,255,.15),transparent 70%);pointer-events:none}.card:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 15%,rgba(255,255,255,.06) 40%,transparent 60%);transform:translateX(-110%);}@keyframes shine{0%,53%,100%{transform:translateX(-110%)}73%{transform:translateX(110%)}}
+    .tag{display:inline-flex;align-items:center;gap:7px;border:1px solid #a78bfa55;background:#a78bfa15;border-radius:99px;padding:7px 12px;font-size:11px;font-weight:700;letter-spacing:.13em;color:#cebaff;text-transform:uppercase}.tag:before{content:'✦';font-size:12px}
+    .hero{text-align:center}.avatar-wrap{position:relative;width:116px;height:116px;margin:24px auto 17px;padding:4px;border-radius:50%;background:conic-gradient(#66e1ff,#a775ff,#ff75ca,#66e1ff);box-shadow:0 0 42px #8c67fd52;}@keyframes avatarFloat{50%{transform:translateY(-7px)}}.avatar{width:100%;height:100%;display:block;object-fit:cover;border-radius:50%;border:4px solid #121322;background:#1b2035}.status{position:absolute;bottom:5px;right:3px;background:#63f2b1;width:16px;height:16px;border-radius:50%;border:3px solid #171927;box-shadow:0 0 14px #63f2b1}
+    h1,h2,h3,p{margin:0}h1{font:700 clamp(31px,6vw,48px)/1.15 system-ui,sans-serif;letter-spacing:-.055em}.gradient-text{background:linear-gradient(95deg,#fff 5%,#d7c7ff 53%,#75e8ff);-webkit-background-clip:text;background-clip:text;color:transparent}.handle{font-size:13px;color:#a9a8cb;margin-top:8px}.type-line{min-height:28px;font-size:14px;font-weight:600;color:#d9d3ff;margin-top:20px}.cursor{border-right:2px solid #8ee5ff;animation:blink .7s steps(1) infinite}@keyframes blink{50%{border-right-color:transparent}}.intro{max-width:480px;margin:12px auto 0;color:#b9bfd3;font-size:13px;line-height:1.9}
+    .divider{height:1px;width:100%;margin:26px 0 20px;background:linear-gradient(90deg,transparent,#ffffff35,transparent)}
+    .socials{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.social{position:relative;display:flex;gap:10px;justify-content:center;align-items:center;min-height:53px;border:1px solid rgba(255,255,255,.13);border-radius:15px;background:rgba(255,255,255,.05);font-size:13px;font-weight:700;transition:transform .25s,border .25s,background .25s,box-shadow .25s}.social:hover,.social:focus-visible{transform:translateY(-5px);background:#ffffff13;border-color:#a88cffaa;box-shadow:0 10px 30px #8e73ff2e;outline:none}.social svg{width:19px;height:19px;fill:currentColor}.social.fb:hover{border-color:#6fafff}.social.tt:hover{border-color:#75f6ef}.social.gh:hover{border-color:#eee}
+    .section-label{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:25px 0 13px}.section-label h2{font-size:12px;letter-spacing:.17em;color:#e7e5fb;text-transform:uppercase}.section-label span{font-size:10px;color:#9799b3;letter-spacing:.1em}
+    .readme{border-radius:18px;border:1px solid #ffffff1e;background:#080e20a6;overflow:hidden}.readme-top{display:flex;align-items:center;gap:7px;background:#ffffff09;padding:12px 15px;border-bottom:1px solid #ffffff13}.dot{height:9px;width:9px;border-radius:50%;background:#ff636f}.dot:nth-child(2){background:#ffcc5c}.dot:nth-child(3){background:#65de8b}.readme-name{font-size:11px;color:#b4b9d2;margin-left:8px;font-weight:600}.readme-body{padding:18px 20px;color:#c5cce0;font-size:12px;line-height:1.95}.readme-body strong{color:#e6d8ff}.readme-body .accent{color:#79e1f6}.readme-body p+p{margin-top:9px}.mini-badges{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.mini-badges span{font-size:10px;border:1px solid #ffffff20;border-radius:7px;padding:5px 9px;background:#ffffff08;color:#cad2ea}
+    .bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:22px;font-size:11px;color:#8f94af}.bottom button{border:1px solid #ffffff25;background:#ffffff0b;color:#c9cee5;padding:8px 11px;border-radius:10px;cursor:pointer;transition:.2s}.bottom button:hover{background:#ffffff20}.copy-msg{min-width:75px;text-align:right}
+    footer{text-align:center;font-size:11px;color:#b4b9cb;text-shadow:0 2px 12px #000;line-height:1.8}.tiny-star{color:#a992ff}.reveal{animation:appear .9s both}@keyframes appear{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:600px){.shell{padding:22px 0 28px;justify-content:flex-start}.card{padding:27px 20px 25px;border-radius:24px}.glow-ring{border-radius:25px}.topbar{font-size:10px}.avatar-wrap{width:105px;height:105px}.socials{gap:7px}.social{font-size:11px;gap:6px;min-height:49px}.social svg{width:16px;height:16px}.readme-body{padding:14px}.bottom{flex-wrap:wrap}}
+    /* Hiệu ứng nhẹ: chỉ animate transform/opacity, tránh canvas và filter động */
+    .glow-ring{animation:spin 9s linear infinite;will-change:transform}
+    /* Fallback viền neon vẫn chuyển động trên trình duyệt không hỗ trợ @property */
+    @supports not (background:paint(something)){.glow-ring{animation:ringRotate 12s linear infinite}}
+    @keyframes ringRotate{to{transform:rotate(360deg)}}
+    .card:after{animation:shine 9s ease-in-out infinite}
+    .avatar-wrap{animation:avatarFloat 5s ease-in-out infinite}
+    .status{animation:statusPulse 2.5s ease-in-out infinite}
+    @keyframes statusPulse{50%{box-shadow:0 0 5px #63f2b1;opacity:.8}}
+    .tag:before{animation:twinkle 3s ease-in-out infinite}
+    @keyframes twinkle{50%{opacity:.45;transform:scale(.85)}}
+    .social:active{transform:scale(.97)}
+    @media (hover:none),(pointer:coarse){
+      .card{transform:none!important;transition:none}
+      .glow-ring{animation-duration:18s;filter:blur(3px)}
+      .card:after{animation-duration:15s}
+      .orb{filter:blur(35px)}
+    }
+    @media (prefers-reduced-motion:reduce){.glow-ring,.avatar-wrap,.status,.tag:before,.card:after{animation:none!important}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.card{transform:none!important}}
+  </style>
+</head>
+<body>
+  <div class="bg-fallback"></div>
+  <!-- NỀN VIDEO: lưu video đã tải thành background.mp4, đặt cạnh index.html.
+       Hoặc thay src="background.mp4" bằng URL HTTPS trực tiếp kết thúc .mp4.
+       Link trang TikTok thường KHÔNG phải là link file MP4. -->
+  <div class="video-scene" aria-hidden="true">
+    <video id="bgVideo" autoplay muted loop playsinline preload="metadata" poster="">
+      <source src="background.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="veil"></div><div class="orb one"></div><div class="orb two"></div>
+  <main class="shell">
+    <div class="topbar reveal"><span class="mark"><i></i> BVD / PERSONAL SPACE</span><span class="live"><i></i> Always creating</span></div>
+    <div class="profile-wrap reveal" style="animation-delay:.12s">
+      <div class="glow-ring"></div>
+      <article class="card" id="profileCard">
+        <div class="hero">
+          <span class="tag">Welcome to my world</span>
+          <div class="avatar-wrap">
+            <!-- ĐỔI AVATAR: thay src dưới đây bằng link ảnh của bạn -->
+            <img class="avatar" src="https://github.com/buivietduc07.png" alt="Ảnh đại diện Bùi Việt Đức" onerror="this.onerror=null;this.src='https://placehold.co/200x200/20203e/ffffff?text=BVD'" />
+            <span class="status" title="Online"></span>
+          </div>
+          <h1><span class="gradient-text">Bùi Việt Đức</span></h1>
+          <p class="handle">@buivietduc07 &nbsp;•&nbsp; Digital Creator</p>
+          <p class="type-line"><span id="typing" class="cursor"></span></p>
+          <p class="intro">Xin chào! Mình là Đức. Yêu thích công nghệ, thiết kế website và tạo ra những trải nghiệm thú vị trên Internet.</p>
+        </div>
+        <div class="divider"></div>
+        <nav class="socials" aria-label="Mạng xã hội">
+          <!-- ĐỔI LINK: thay href bằng trang của bạn -->
+          <a class="social fb" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg> Facebook
+          </a>
+          <a class="social gh" href="https://github.com/buivietduc07" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .9A11.1 11.1 0 0 0 8.49 22.53c.55.1.75-.24.75-.53v-2.1c-3.06.67-3.71-1.3-3.71-1.3-.5-1.27-1.22-1.61-1.22-1.61-1-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.67 2.57 1.19 3.19.91.1-.71.38-1.2.7-1.48-2.44-.28-5-1.22-5-5.44 0-1.2.43-2.18 1.13-2.95-.11-.28-.49-1.4.11-2.91 0 0 .92-.29 3.02 1.13A10.5 10.5 0 0 1 12 5.32c.93 0 1.86.13 2.73.37 2.1-1.42 3.02-1.13 3.02-1.13.6 1.51.22 2.63.11 2.91.7.77 1.13 1.75 1.13 2.95 0 4.23-2.57 5.16-5.02 5.43.39.34.74 1.02.74 2.06V22c0 .29.2.64.76.53A11.1 11.1 0 0 0 12 .9Z"/></svg> GitHub
+          </a>
+          <a class="social tt" href="https://www.tiktok.com/@duongtam0362" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.7 2h-3.1v13.28a3.08 3.08 0 1 1-2.64-3.05V9.08a6.24 6.24 0 1 0 5.74 6.2V8.5c1.27.91 2.81 1.43 4.46 1.48V6.87A4.45 4.45 0 0 1 16.7 2Z"/></svg> TikTok
+          </a>
+        </nav>
+        <div class="section-label"><h2>README.md</h2><span>ABOUT ME / 01</span></div>
+        <section class="readme" aria-label="Giới thiệu bản thân">
+          <div class="readme-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="readme-name">~/profile/README.md</span></div>
+          <div class="readme-body">
+            <p><span class="accent"># Hello, World!</span> 👋</p>
+            <p>💻 Mình là <strong>Bùi Việt Đức</strong>, một người đam mê lập trình và sáng tạo website.</p>
+            <p>🚀 Mục tiêu: Xây dựng các sản phẩm web đẹp, nhanh và mang dấu ấn riêng.</p>
+            <p>✨ <strong>"Code. Create. Repeat."</strong></p>
+            <div class="mini-badges"><span>HTML / CSS</span><span>JavaScript</span><span>Python</span><span>Web Development</span><span>Creative Coding</span></div>
+          </div>
+        </section>
+        <div class="bottom"><span>© <span id="year"></span> Bùi Việt Đức <span class="tiny-star">✦</span> Crafted with passion</span><button id="copyBtn" type="button">⧉ Copy profile URL</button></div>
+      </article>
+    </div>
+    <footer>Made for the curious minds <span class="tiny-star">✦</span> Keep exploring</footer>
+  </main>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const words=['Web Developer 💻','Creative Coder ✨','Building digital experiences 🚀'];
+    const typing=document.getElementById('typing');let wi=0,ci=0,deleting=false;
+    function type(){const word=words[wi];typing.textContent=word.slice(0,ci);let delay=deleting?55:105;if(!deleting&&ci<word.length)ci++;else if(!deleting){deleting=true;delay=1700}else if(ci>0)ci--;else{deleting=false;wi=(wi+1)%words.length;delay=350}window.setTimeout(type,delay)}
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)type();else typing.textContent=words[0];
+    // Dừng video khi chuyển tab để giảm CPU và pin.
+    const bgVideo=document.getElementById('bgVideo');
+    document.addEventListener('visibilitychange',()=>{if(document.hidden){bgVideo.pause()}else{bgVideo.play().catch(()=>{})}});
+    bgVideo.play().catch(()=>{});
+    // Nghiêng 3D chỉ khi rê chuột trên desktop, tối đa 1 lần mỗi khung hình.
+    const card=document.getElementById('profileCard');
+    const tiltAllowed=window.matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
+    let tiltFrame=0,tx=0,ty=0;
+    function updateTilt(){tiltFrame=0;card.style.transform=`rotateX(${ty}deg) rotateY(${tx}deg)`}
+    if(tiltAllowed.matches){
+      card.addEventListener('pointermove',e=>{
+        const r=card.getBoundingClientRect();
+        const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+        tx=+(x*5).toFixed(2);ty=+(-y*5).toFixed(2);
+        card.style.setProperty('--mx',`${(x+.5)*100}%`);
+        card.style.setProperty('--my',`${(y+.5)*100}%`);
+        if(!tiltFrame)tiltFrame=requestAnimationFrame(updateTilt);
+      },{passive:true});
+      card.addEventListener('pointerleave',()=>{if(tiltFrame)cancelAnimationFrame(tiltFrame);tiltFrame=0;card.style.transform='';card.style.removeProperty('--mx');card.style.removeProperty('--my')});
+    }
+    const copyBtn=document.getElementById('copyBtn');copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);copyBtn.textContent='✓ Đã sao chép';setTimeout(()=>copyBtn.textContent='⧉ Copy profile URL',1800)}catch{copyBtn.textContent='Không thể sao chép';setTimeout(()=>copyBtn.textContent='⧉ Copy profile URL',1800)}});
+  </script>
+</body>
+</html>
