@@ -146,93 +146,45 @@
     const copyBtn=document.getElementById('copyBtn');copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);copyBtn.textContent='✓ Đã sao chép';setTimeout(()=>copyBtn.textContent='⧉ Copy profile URL',1800)}catch{copyBtn.textContent='Không thể sao chép';setTimeout(()=>copyBtn.textContent='⧉ Copy profile URL',1800)}});
   </script>
   
-<!-- SOUNDCLOUD MUSIC -->
-<div id="musicPlayer">
-  <iframe
-    id="scPlayer"
-    width="100%"
-    height="100"
-    scrolling="no"
-    frameborder="no"
-    allow="autoplay"
-    title="SoundCloud Music"
-    src="https://on.soundcloud.com/dfXoNoxrdnMdX9hxjV">
-  </iframe>
-</div>
-
-<button id="musicBtn" type="button">
-  🎵 Bật nhạc
-</button>
-
-<style>
-#musicPlayer {
-  position:fixed;
-  bottom:78px;
-  right:20px;
-  width:min(300px, calc(100vw - 40px));
-  z-index:9998;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 0 18px #a78bfa44;
-}
-
-#musicBtn {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  z-index:9999;
-  padding:12px 20px;
-  background:#141426dd;
-  color:white;
-  border:1px solid #a78bfa;
-  border-radius:30px;
-  box-shadow:0 0 18px #a78bfa66;
-  cursor:pointer;
-}
-</style>
-
+<!-- Nhạc SoundCloud chạy nền, không hiện trình phát hay nút -->
+<iframe
+  id="scPlayer"
+  title="Nhạc nền SoundCloud"
+  loading="eager"
+  allow="autoplay"
+  tabindex="-1"
+  aria-hidden="true"
+  style="position:fixed;left:-9999px;top:0;width:1px;height:1px;border:0;pointer-events:none"
+  src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fhu-nh-khoa-496824629%2Fmixtape-dj-thai-hoang-2026&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=false">
+</iframe>
 <script src="https://w.soundcloud.com/player/api.js"></script>
-
 <script>
-window.addEventListener("load", () => {
-  const iframe = document.getElementById("scPlayer");
-  const btn = document.getElementById("musicBtn");
-
-  if (!window.SC) return;
-
+(() => {
+  const iframe = document.getElementById('scPlayer');
+  if (!iframe || !window.SC?.Widget) return;
   const player = SC.Widget(iframe);
+  let started = false;
   let ready = false;
-  let playing = false;
-
+  function tryPlay() {
+    if (!ready || started) return;
+    player.setVolume(40);
+    player.play();
+  }
   player.bind(SC.Widget.Events.READY, () => {
     ready = true;
-    player.setVolume(40);
+    tryPlay();
   });
-
-  player.bind(SC.Widget.Events.PLAY, () => {
-    playing = true;
-    btn.textContent = "⏸ Tắt nhạc";
-  });
-
-  player.bind(SC.Widget.Events.PAUSE, () => {
-    playing = false;
-    btn.textContent = "🎵 Bật nhạc";
-  });
-
+  player.bind(SC.Widget.Events.PLAY, () => { started = true; });
   player.bind(SC.Widget.Events.FINISH, () => {
+    started = false;
     player.seekTo(0);
-    player.play();
+    tryPlay();
   });
-
-  btn.addEventListener("click", () => {
-    if (!ready) return;
-    if (playing) {
-      player.pause();
-    } else {
-      player.play();
-    }
-  });
-});
+  // Trình duyệt có thể chặn tự phát âm thanh.
+  // Nếu vậy, thử phát khi người xem tương tác với trang, không cần nút riêng.
+  document.addEventListener('pointerdown', tryPlay, { passive: true });
+  document.addEventListener('keydown', tryPlay);
+})();
 </script>
 
 </body>
