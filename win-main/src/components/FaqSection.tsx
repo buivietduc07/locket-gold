@@ -7,7 +7,7 @@ export const FaqSection: React.FC = () => {
 
   const faqs: FaqItem[] = [
     {
-  question: 'nếu chưa hiện đầy đủ photobooth thì phải làm như nào ?',
+  question: 'nếu chưa hiện gold thì phải làm như nào ?',
   answer:
     'vui lòng đăng xuất và đăng nhập lại. ',
 },
