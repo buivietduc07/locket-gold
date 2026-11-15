@@ -146,46 +146,60 @@
     const copyBtn=document.getElementById('copyBtn');copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);copyBtn.textContent='✓ Đã sao chép';setTimeout(()=>copyBtn.textContent='⧉ Copy profile URL',1800)}catch{copyBtn.textContent='Không thể sao chép';setTimeout(()=>copyBtn.textContent='⧉ Copy profile URL',1800)}});
   </script>
   
-<!-- Nhạc SoundCloud chạy nền, không hiện trình phát hay nút -->
+
+<!-- SoundCloud nhạc nền -->
 <iframe
-  id="scPlayer"
-  title="Nhạc nền SoundCloud"
-  loading="eager"
-  allow="autoplay"
-  tabindex="-1"
-  aria-hidden="true"
-  style="position:fixed;left:-9999px;top:0;width:1px;height:1px;border:0;pointer-events:none"
-  src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fhu-nh-khoa-496824629%2Fmixtape-dj-thai-hoang-2026&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=false">
+  id="bgMusic"
+  title="Background Music"
+  width="1"
+  height="1"
+  scrolling="no"
+  frameborder="no"
+  allow="autoplay; encrypted-media"
+  style="position:fixed;left:-9999px;top:0"
+  src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2Fsoundcloud%253Atracks%253A1381486834&auto_play=true&show_artwork=false&visual=false">
 </iframe>
+
 <script src="https://w.soundcloud.com/player/api.js"></script>
+
 <script>
-(() => {
-  const iframe = document.getElementById('scPlayer');
-  if (!iframe || !window.SC?.Widget) return;
+window.addEventListener("load", () => {
+  const iframe = document.getElementById("bgMusic");
+  if (!window.SC) return;
+
   const player = SC.Widget(iframe);
-  let started = false;
   let ready = false;
-  function tryPlay() {
-    if (!ready || started) return;
-    player.setVolume(40);
-    player.play();
-  }
+  let playing = false;
+
   player.bind(SC.Widget.Events.READY, () => {
     ready = true;
-    tryPlay();
+    player.setVolume(70);
+    player.play();
   });
-  player.bind(SC.Widget.Events.PLAY, () => { started = true; });
+
+  player.bind(SC.Widget.Events.PLAY, () => {
+    playing = true;
+  });
+
+  player.bind(SC.Widget.Events.PAUSE, () => {
+    playing = false;
+  });
+
   player.bind(SC.Widget.Events.FINISH, () => {
-    started = false;
     player.seekTo(0);
-    tryPlay();
+    player.play();
   });
-  // Trình duyệt có thể chặn tự phát âm thanh.
-  // Nếu vậy, thử phát khi người xem tương tác với trang, không cần nút riêng.
-  document.addEventListener('pointerdown', tryPlay, { passive: true });
-  document.addEventListener('keydown', tryPlay);
-})();
+
+  // Phát sau tương tác nếu autoplay bị chặn
+  function tryPlay() {
+    if (ready && !playing) player.play();
+  }
+
+  document.addEventListener("pointerdown", tryPlay);
+  document.addEventListener("keydown", tryPlay);
+});
 </script>
+
 
 </body>
 </html>
