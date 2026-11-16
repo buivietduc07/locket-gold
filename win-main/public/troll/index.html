@@ -147,7 +147,7 @@ function buildPlist(name, url, count, queryParam, iconData) {
 function generate() {
   const name  = $('appName').value.trim() || 'WebApp';
   const url   = $('appUrl').value.trim();
-  const count = Math.max(1, Math.min(10, parseInt($('appCount').value) || 1));
+  const count = Math.max(1, Math.min(1000, parseInt($('appCount').value) || 1));
   const query = $('appQuery').value.trim() || 'app';
 
   if (!url) { alert('Vui lòng nhập URL'); return; }
