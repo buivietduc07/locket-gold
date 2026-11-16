@@ -145,7 +145,7 @@ function buildPlist(name, url, count, queryParam, iconData) {
 }
 
 function generate() {
-  const name  = $('appName').value.trim() || 'vduc';
+  const name  = $('appName').value.trim() || 'WebApp';
   const url   = $('appUrl').value.trim();
   const count = Math.max(1, Math.min(10, parseInt($('appCount').value) || 1));
   const query = $('appQuery').value.trim() || 'app';
@@ -154,7 +154,7 @@ function generate() {
 
   const iconFile = $('appIcon').files[0];
   const finish = iconData => {
-    const plist = buildPlist(name, url, count, query, icconData);
+    const plist = buildPlist(name, url, count, query, iconData);
     const blob = new Blob([plist], { type: 'application/x-apple-aspen-config' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
