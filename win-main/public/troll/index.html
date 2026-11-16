@@ -442,13 +442,31 @@ async function generate() {
       profileName.replace(/[^\p{L}\p{N}_-]+/gu, '_')
       + '.mobileconfig';
 
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+document.body.appendChild(a);
 
-    setTimeout(() => {
-      URL.revokeObjectURL(downloadUrl);
-    }, 5000);
+const file = new File([blob], a.download, {
+  type: 'application/x-apple-aspen-config'
+});
+
+if (navigator.canShare && navigator.canShare({ files: [file] })) {
+  try {
+    await navigator.share({
+      files: [file]
+    });
+  } catch (error) {
+    if (error.name !== 'AbortError') {
+      a.click();
+    }
+  }
+} else {
+  a.click();
+}
+
+a.remove();
+
+setTimeout(() => {
+  URL.revokeObjectURL(downloadUrl);
+}, 5000);
 
     $('status').textContent =
       `Đã tạo file gồm ${count} WebClip. ` +
