@@ -154,7 +154,7 @@ function generate() {
 
   const iconFile = $('appIcon').files[0];
   const finish = iconData => {
-    const plist = buildPlist(name, url, count, query, iczonData);
+    const plist = buildPlist(name, url, count, query, icconData);
     const blob = new Blob([plist], { type: 'application/x-apple-aspen-config' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
