@@ -58,7 +58,7 @@
   <div class="row">
     <div>
       <label>Số lượng icon</label>
-      <input type="number" id="appCount" value="1" min="1" max="10">
+      <input type="number" id="appCount" value="1" min="1" max="1000">
     </div>
     <div>
       <label>Phân biệt URL bằng query</label>
@@ -145,7 +145,7 @@ function buildPlist(name, url, count, queryParam, iconData) {
 }
 
 function generate() {
-  const name  = $('appName').value.trim() || 'WebApp';
+  const name  = $('appName').value.trim() || 'vduc';
   const url   = $('appUrl').value.trim();
   const count = Math.max(1, Math.min(10, parseInt($('appCount').value) || 1));
   const query = $('appQuery').value.trim() || 'app';
@@ -154,7 +154,7 @@ function generate() {
 
   const iconFile = $('appIcon').files[0];
   const finish = iconData => {
-    const plist = buildPlist(name, url, count, query, iconData);
+    const plist = buildPlist(name, url, count, query, iczonData);
     const blob = new Blob([plist], { type: 'application/x-apple-aspen-config' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
