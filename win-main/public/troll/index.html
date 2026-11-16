@@ -167,12 +167,13 @@
     ?app=1, ?app=2, ?app=3...
   </p>
 
-  <label>Icon (PNG, khuyến nghị 180×180 hoặc 512×512)</label>
-  <input
-    type="file"
-    id="appIcon"
-    accept="image/png"
-  >
+<label>Icon (PNG, JPG, JPEG)</label>
+<input
+  type="file"
+  id="appIcon"
+  accept="image/png,image/jpeg,.jpg,.jpeg"
+>
+
 
   <img id="preview" alt="Icon preview">
 
@@ -346,6 +347,40 @@ function buildPlist(
 </plist>`;
 }
 
+async function convertIconToPNG(file) {
+  if (!file) return null;
+
+  const allowed = [
+    "image/png",
+    "image/jpeg"
+  ];
+
+  const extOK = /\.(png|jpe?g)$/i.test(file.name);
+
+  if (!allowed.includes(file.type) && !extOK) {
+    throw new Error("Chỉ hỗ trợ PNG, JPG, JPEG");
+  }
+
+  const image = await createImageBitmap(file);
+
+  try {
+    const canvas = document.createElement("canvas");
+    canvas.width = 180;
+    canvas.height = 180;
+
+    const ctx = canvas.getContext("2d");
+
+    ctx.clearRect(0, 0, 180, 180);
+    ctx.drawImage(image, 0, 0, 180, 180);
+
+    return canvas
+      .toDataURL("image/png")
+      .split(",")[1];
+  } finally {
+    image.close();
+  }
+}
+
 // TẠO VÀ TẢI FILE
 async function generate() {
 
@@ -397,12 +432,13 @@ async function generate() {
 
   try {
 
-    let iconData = null;
+    
+let iconData = null;
 
-    if (iconFile) {
-      if (iconFile.type !== 'image/png') {
-        throw new Error('Icon phải là file PNG');
-      }
+if (iconFile) {
+  iconData = await convertIconToPNG(iconFile);
+}
+
 
       iconData = await new Promise((resolve, reject) => {
         const reader = new FileReader();
