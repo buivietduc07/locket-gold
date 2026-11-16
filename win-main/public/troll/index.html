@@ -328,14 +328,14 @@ function buildPlist(
   <key>PayloadUUID</key>
   <string>${uuid()}</string>
 
-  <key>PayloadDisplayName</key>
-  <string>${esc(profileName)}</string>
+<key>Label</key>
+<string>${esc(name)}</string>
 
   <key>PayloadOrganization</key>
   <string>buivduc07</string>
 
-  <key>PayloadDescription</key>
-  <string>Cấu hình WebClip gồm ${count} icon.</string>
+<key>PayloadDescription</key>
+<string>Cấu hình ${esc(profileName)} gồm ${count} ứng dụng.</string>
 
   <key>PayloadContent</key>
   <array>
