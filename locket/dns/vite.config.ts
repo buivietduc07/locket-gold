@@ -106,9 +106,9 @@ function appleProfilePlugin(): Plugin {
     },
   };
 }
-
 export default defineConfig(() => {
   return {
+    base: '/dns/',
     plugins: [react(), tailwindcss(), appleProfilePlugin()],
     resolve: {
       alias: {
