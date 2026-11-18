@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "output",
+  "rewrites": [
+    {
+      "source": "/dns",
+      "destination": "/dns/index.html"
+    },
+    {
+      "source": "/dns/",
+      "destination": "/dns/index.html"
+    }
+  ]
+}
