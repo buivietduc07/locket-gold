@@ -1,0 +1,7 @@
+{
+  "name": "buivduc07-site",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix dns ci && npm --prefix dns run build && mkdir -p output/dns && cp index.html output/index.html && cp -R dns/dist/. output/dns/"
+  }
+}
