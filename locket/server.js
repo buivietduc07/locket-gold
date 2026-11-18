@@ -101,6 +101,15 @@ app.post('/api/post',upload.single('photo'),wrap(async(req,res)=>{
   if (req.body?.confirmAll !== 'yes') return res.status(400).json({error:'Cần xác nhận gửi cho tất cả bạn bè'});
   const token=await refresh(s);
   setSession(res,s);
+  const claims = JSON.parse(
+  Buffer.from(token.split('.')[1], 'base64url').toString('utf8')
+);
+
+console.log('STORAGE DEBUG:', {
+  uidMatch: claims.user_id === s.uid || claims.sub === s.uid,
+  project: claims.aud,
+  tokenExpired: claims.exp * 1000 <= Date.now()
+});
   const image=await sharp(req.file.buffer,{failOn:'error'}).rotate().resize(1080,1080,{fit:'cover'}).webp({quality:85}).toBuffer();
   if(image.length > 4*1024*1024) return res.status(400).json({error:'Ảnh sau xử lý vượt 4 MB'});
   const filename=`${randomUUID()}.webp`;
