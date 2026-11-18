@@ -1,10 +1,10 @@
 {
-  "buildCommand": "vite build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
   "headers": [
     {
-      "source": "/LocketGold.mobileconfig",
+      "source": "/dns/LocketGold.mobileconfig",
       "headers": [
         {
           "key": "Content-Type",
@@ -32,8 +32,12 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!.*\\..*).*)",
-      "destination": "/index.html"
+      "source": "/dns",
+      "destination": "/dns/index.html"
+    },
+    {
+      "source": "/dns/",
+      "destination": "/dns/index.html"
     }
   ]
 }
