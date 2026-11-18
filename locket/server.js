@@ -120,4 +120,10 @@ app.use((error,req,res,next)=>{
   res.status(status).json({error:message.replace(/token=[^\s&]+/gi,'token=[hidden]').slice(0,300)});
 });
 setInterval(()=>{for(const [id,s] of sessions) if(s.expires<Date.now())sessions.delete(id);},60*60_000).unref();
-app.listen(PORT,()=>console.log(`Locket web: http://localhost:${PORT}`));
+if (!process.env.VERCEL) {
+  app.listen(PORT, () =>
+    console.log(`http://localhost:${PORT}`)
+  );
+}
+
+export default app;
