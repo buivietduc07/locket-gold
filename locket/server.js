@@ -99,9 +99,24 @@ app.post('/api/post',upload.single('photo'),wrap(async(req,res)=>{
   const caption=String(req.body?.caption || '').trim();
   if (caption.length>250) return res.status(400).json({error:'Caption tối đa 250 ký tự'});
   if (req.body?.confirmAll !== 'yes') return res.status(400).json({error:'Cần xác nhận gửi cho tất cả bạn bè'});
-  const token=await refresh(s);
-  setSession(res,s);
-  const claims = JSON.parse(
+const token = await refresh(s);
+setSession(res, s);
+
+const claims = JSON.parse(
+  Buffer.from(token.split('.')[1], 'base64url').toString('utf8')
+);
+const realUid = claims.user_id || claims.sub || s.uid;
+console.log('UPLOAD DEBUG', {
+  sessionUid: s.uid,
+  tokenUid: claims.user_id || claims.sub,
+  realUid,
+  email: s.email
+});
+const image = await sharp(req.file.buffer,{failOn:'error'})
+  .rotate()
+  .resize(1080,1080,{fit:'cover'})
+  .webp({quality:85})
+  .toBuffer();
   Buffer.from(token.split('.')[1], 'base64url').toString('utf8')
 );
 
@@ -112,16 +127,23 @@ console.log('STORAGE DEBUG:', {
 });
   const image=await sharp(req.file.buffer,{failOn:'error'}).rotate().resize(1080,1080,{fit:'cover'}).webp({quality:85}).toBuffer();
   if(image.length > 4*1024*1024) return res.status(400).json({error:'Ảnh sau xử lý vượt 4 MB'});
-  const filename=`${randomUUID()}.webp`;
-  const path=`users/${s.uid}/moments/thumbnails/${filename}`;
-  const pathEncoded=encodeURIComponent(path);
-  const startUrl=`${STORAGE}/${pathEncoded}?uploadType=resumable&name=${pathEncoded}`;
+const filename = `${randomUUID()}.webp`;
+const objectPath = `users/${realUid}/moments/thumbnails/${filename}`;
+const pathEncoded = encodeURIComponent(objectPath);
+const startUrl = `${STORAGE}?uploadType=resumable&name=${pathEncoded}`;
   const init=await fetch(startUrl,{method:'POST',signal:AbortSignal.timeout(25_000),headers:{
     'Authorization':`Bearer ${token}`,'Content-Type':'application/json; charset=UTF-8',
     'X-Goog-Upload-Protocol':'resumable','X-Goog-Upload-Command':'start',
     'X-Goog-Upload-Content-Length':String(image.length),'X-Goog-Upload-Content-Type':'image/webp',
     'X-Firebase-Storage-Version':'ios/10.28.1','User-Agent':UA
-  },body:JSON.stringify({name:path,contentType:'image/webp',bucket:'',metadata:{creator:s.uid,visibility:'private'}})});
+  },body: JSON.stringify({
+  name: objectPath,
+  contentType: 'image/webp',
+  metadata: {
+    creator: realUid,
+    visibility: 'private'
+  }
+})
   if(!init.ok) {const b=await init.text();throw new Error(`Khởi tạo upload thất bại (HTTP ${init.status}): ${b.slice(0,200)}`);}
   const sessionUrl=init.headers.get('x-goog-upload-url');
   if(!sessionUrl) throw new Error('Máy chủ không trả về X-Goog-Upload-URL. Giao thức có thể đã thay đổi.');
@@ -132,7 +154,9 @@ console.log('STORAGE DEBUG:', {
     'X-Goog-Upload-Command':'upload, finalize','X-Goog-Upload-Offset':'0'
   },body:image});
   if(!put.ok){const b=await put.text();throw new Error(`Upload thất bại (HTTP ${put.status}): ${b.slice(0,200)}`);}
-  const metadata=await requestJson(`${STORAGE}/${pathEncoded}`,{headers:authHeaders(token)});
+const metadata = await requestJson(`${STORAGE}/${pathEncoded}`, {
+  headers: authHeaders(token)
+});
   const downloadToken=String(metadata.downloadTokens || '').split(',')[0];
   if(!downloadToken)throw new Error('Không có downloadTokens trong metadata ảnh');
   const photoUrl=`${STORAGE}/${pathEncoded}?alt=media&token=${encodeURIComponent(downloadToken)}`;
