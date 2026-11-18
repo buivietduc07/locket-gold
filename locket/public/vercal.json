@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/locket",
+      "destination": "/"
+    },
+    {
+      "source": "/locket/:path*",
+      "destination": "/:path*"
+    }
+  ]
+}
