@@ -201,5 +201,124 @@ window.addEventListener("load", () => {
 </script>
 
 
+<!-- CHỮ NEON ĐI THEO CHUỘT VÀ NGÓN TAY -->
+<style>
+#ducFollow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999999;
+  pointer-events: none;
+  white-space: nowrap;
+  font-size: clamp(17px, 4vw, 25px);
+  font-weight: 900;
+  color: white;
+  text-shadow:
+    0 0 8px #a78bfa,
+    0 0 18px #8b5cf6,
+    0 0 30px #42d9ff;
+  opacity: 0;
+  transform: translate(-50%, -150%) scale(.8);
+  transition: opacity .35s, scale .2s;
+  will-change: left, top;
+}
+
+#ducFollow.active {
+  opacity: 1;
+  scale: 1.08;
+}
+
+#ducFollowGlow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999998;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #8b5cf655;
+  filter: blur(28px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity .3s;
+}
+
+#ducFollowGlow.active {
+  opacity: 1;
+}
+</style>
+
+<div id="ducFollow">Bùi Việt Đức Dz ✨</div>
+<div id="ducFollowGlow"></div>
+
+<script>
+(() => {
+  const text = document.getElementById("ducFollow");
+  const glow = document.getElementById("ducFollowGlow");
+
+  let x = 0;
+  let y = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let hideTimer;
+  let active = false;
+
+  // Cập nhật vị trí
+  function move(e) {
+    x = e.clientX;
+    y = e.clientY;
+
+    active = true;
+    text.classList.add("active");
+    glow.classList.add("active");
+
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hide, 1000);
+  }
+
+  function hide() {
+    active = false;
+    text.classList.remove("active");
+    glow.classList.remove("active");
+  }
+
+  // Chạy mượt theo từng khung hình
+  function animate() {
+currentX += (x - currentX) * 0.7;
+currentY += (y - currentY) * 0.7;
+
+    text.style.left = currentX + "px";
+    text.style.top = currentY + "px";
+
+    glow.style.left = currentX + "px";
+    glow.style.top = currentY + "px";
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // Máy tính: di chuyển chuột
+  document.addEventListener("pointermove", move, {
+    passive: true
+  });
+
+  // Mobile và PC: chạm hoặc bấm
+  document.addEventListener("pointerdown", move, {
+    passive: true
+  });
+
+  // Nhấc tay khỏi màn hình
+  document.addEventListener("pointerup", () => {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hide, 500);
+  });
+
+  // Chuột rời trang
+  document.addEventListener("pointerleave", hide);
+})();
+</script>
+
 </body>
 </html>
