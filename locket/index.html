@@ -69,6 +69,82 @@ h1 .period{color:#7ce8fa;-webkit-text-fill-color:#7ce8fa}
 @media(max-width:360px){.nav-links{gap:10px;font-size:9px}.brand small{font-size:8px}.btn{padding:11px 13px;font-size:11px}.portrait-card{max-width:80%}}
 @media(hover:none),(pointer:coarse){.scene video{opacity:.3}.aura{filter:blur(45px);opacity:.13}.portrait-card{transform:rotate(-3deg)}.portrait-card:hover{transform:rotate(-3deg)}.floating-note,.astro-halo,.portrait-card:before{animation:none}.skill-card:hover,.social-card:hover,.btn:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.js-reveal{opacity:1!important;transform:none!important}}
+
+/* ===== BVD TOUCH FX: nhẹ, có phản hồi riêng trên mobile ===== */
+.btn,.social-card,.nav-links a,.brand {
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.btn,.social-card {
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.btn > *, .social-card > * {position:relative;z-index:1}
+.bvd-wave {
+  position:absolute!important;
+  z-index:0!important;
+  pointer-events:none;
+  border-radius:50%;
+  aspect-ratio:1;
+  background:radial-gradient(circle,rgba(255,255,255,.48) 0%,rgba(177,149,255,.22) 46%,transparent 72%);
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.12);
+  animation:bvdWave .58s cubic-bezier(.12,.72,.26,1) both;
+}
+@keyframes bvdWave {
+  0%{opacity:.8;transform:translate(-50%,-50%) scale(.12)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1)}
+}
+.btn::before,.social-card::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(105deg,transparent 18%,rgba(255,255,255,.22) 46%,transparent 74%);
+  transform:translateX(-130%);
+  opacity:0;
+}
+.btn.bvd-tapped::before,.social-card.bvd-tapped::before {
+  animation:bvdSheen .58s ease-out 1 both;
+}
+@keyframes bvdSheen {
+  0%{opacity:0;transform:translateX(-130%)}
+  18%{opacity:1}
+  100%{opacity:0;transform:translateX(130%)}
+}
+@media (pointer:coarse) {
+  /* iPhone/Android: phản hồi bằng scale/opacity, không dùng blur động */
+  .btn,.social-card,.brand,.nav-links a {
+    transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,border-color .22s,background-color .22s;
+  }
+  .btn.bvd-pressed,.social-card.bvd-pressed,
+  .brand.bvd-pressed,.nav-links a.bvd-pressed {
+    transform:scale(.955)!important;
+  }
+  .btn-primary.bvd-pressed {
+    box-shadow:0 0 0 2px #f4ecff66,0 0 26px #bba3ff88!important;
+  }
+  .btn-ghost.bvd-pressed {
+    border-color:#b5a1ff;
+    background:#a48bff2a;
+    box-shadow:inset 0 0 18px #ad94ff17;
+  }
+  .social-card.bvd-pressed {
+    border-color:#bba4ff;
+    box-shadow:0 0 0 1px #c6b8ff3d,0 8px 25px #9d88ff32;
+  }
+  .social-card.bvd-pressed .social-arrow {transform:translate(4px,-4px) scale(1.1)}
+  .nav-links a.bvd-pressed {color:#e5d8ff;background:#ad8fff1a;border-radius:7px}
+  .brand.bvd-pressed .brand-mark {box-shadow:0 0 23px #a591ff99}
+  .nav-links a{padding:7px 2px}
+  .nav-links a::after{bottom:2px}
+}
+@media (prefers-reduced-motion:reduce){
+  .bvd-wave,.btn.bvd-tapped::before,.social-card.bvd-tapped::before{animation:none!important;display:none!important}
+  .btn.bvd-pressed,.social-card.bvd-pressed,.brand.bvd-pressed,.nav-links a.bvd-pressed{transform:none!important}
+}
 </style>
 </head>
 <body>
@@ -148,12 +224,54 @@ if(!reduce&&'IntersectionObserver' in window){const els=document.querySelectorAl
 const cursor=document.getElementById('ducCursor'),pulse=document.getElementById('clickPulse');
 let cx=0,cy=0,queued=false,hideId=0;
 function position(){queued=false;cursor.style.transform=`translate3d(${cx}px,${cy}px,0)`;}
-function move(e){if(reduce)return;if(e.pointerType==='touch'&&e.type==='pointermove'&&e.buttons===0)return;cx=e.clientX;cy=e.clientY;cursor.classList.add('show');if(!queued){queued=true;requestAnimationFrame(position)}clearTimeout(hideId);hideId=setTimeout(()=>cursor.classList.remove('show'),900);}
+function move(e){if(reduce)return;if(e.pointerType==='touch'&&e.target.closest('a,button'))return;if(e.pointerType==='touch'&&e.type==='pointermove'&&e.buttons===0)return;cx=e.clientX;cy=e.clientY;cursor.classList.add('show');if(!queued){queued=true;requestAnimationFrame(position)}clearTimeout(hideId);hideId=setTimeout(()=>cursor.classList.remove('show'),900);}
 document.addEventListener('pointermove',move,{passive:true});
-document.addEventListener('pointerdown',e=>{move(e);if(reduce)return;pulse.style.transform=`translate3d(${e.clientX-30}px,${e.clientY-30}px,0) scale(.3)`;pulse.classList.remove('run');void pulse.offsetWidth;pulse.classList.add('run');},{passive:true});
+document.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'&&e.target.closest('a,button')){cursor.classList.remove('show');return;}move(e);if(reduce)return;pulse.style.transform=`translate3d(${e.clientX-30}px,${e.clientY-30}px,0) scale(.3)`;pulse.classList.remove('run');void pulse.offsetWidth;pulse.classList.add('run');},{passive:true});
 document.addEventListener('pointerup',e=>{if(e.pointerType==='touch'){clearTimeout(hideId);hideId=setTimeout(()=>cursor.classList.remove('show'),350)}},{passive:true});
 document.addEventListener('pointercancel',()=>cursor.classList.remove('show'),{passive:true});
 window.addEventListener('blur',()=>cursor.classList.remove('show'));
+
+// ===== Touch FX: nút có ripple, ánh sáng và cảm giác bấm thật =====
+// Không chặn sự kiện click: các link vẫn mở, anchor vẫn cuộn bình thường.
+const bvdTargets = '.btn, .social-card, .nav-links a, .brand';
+const bvdPressed = new Map();
+function bvdRelease(id, cancelled=false){
+  const el=bvdPressed.get(id);
+  if(!el)return;
+  bvdPressed.delete(id);
+  el.classList.remove('bvd-pressed');
+  if(cancelled){el.classList.remove('bvd-tapped');return;}
+  // Thoát trạng thái khi animation đã kết thúc, không vòng lặp nền.
+  setTimeout(()=>el.classList.remove('bvd-tapped'),650);
+}
+document.addEventListener('pointerdown', e => {
+  if(e.pointerType==='mouse' && e.button!==0)return;
+  const el=e.target.closest(bvdTargets);
+  if(!el||reduce)return;
+  bvdPressed.set(e.pointerId,el);
+  el.classList.add('bvd-pressed');
+  el.classList.remove('bvd-tapped');
+  // Bắt buộc tải lại keyframe mỗi lần người dùng chạm, không thay DOM nút/link.
+  void el.offsetWidth;
+  el.classList.add('bvd-tapped');
+  if(!el.matches('.btn,.social-card'))return;
+  const r=el.getBoundingClientRect();
+  const size=Math.ceil(Math.max(r.width,r.height)*1.9);
+  const wave=document.createElement('span');
+  wave.className='bvd-wave';
+  wave.setAttribute('aria-hidden','true');
+  wave.style.width=size+'px';
+  wave.style.height=size+'px';
+  wave.style.left=(e.clientX-r.left)+'px';
+  wave.style.top=(e.clientY-r.top)+'px';
+  el.querySelector('.bvd-wave')?.remove();
+  wave.addEventListener('animationend',()=>wave.remove(),{once:true});
+  el.appendChild(wave);
+},{passive:true});
+document.addEventListener('pointerup',e=>bvdRelease(e.pointerId),{passive:true});
+document.addEventListener('pointercancel',e=>bvdRelease(e.pointerId,true),{passive:true});
+window.addEventListener('blur',()=>{for(const id of bvdPressed.keys())bvdRelease(id,true)});
+
 // Scroll progress: cập nhật một lần mỗi frame khi trang cuộn.
 const progress=document.getElementById('scrollProgress');let scrollQueued=false;
 function scrollUpdate(){scrollQueued=false;const max=document.documentElement.scrollHeight-innerHeight;progress.style.transform=`scaleX(${max>0?Math.min(1,scrollY/max):0})`;}
